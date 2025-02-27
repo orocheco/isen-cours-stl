@@ -68,9 +68,48 @@ void tuto_vector() {
         std::cout << element << " ";
     }
 
+
+
+    // itérateur
+    // on peut utiliser auto
+    std::vector<int>::iterator it1 = v2.begin();
+
+    // afficher le premier élément
+    std::cout << "premier élément: " << *it1 << std::endl;
+    std::cout << "second élément: " << *(++it1) << std::endl;
+
+    // insérer à la seconde position avec un itérateur
+    v2.insert(it1, 99);
+    std::cout << "Insertion : V2: [";
+    for (auto it = v2.begin(); it != v2.end(); ++it) {
+        std::cout << *it << " ";
+    }
+    std::cout << "]" << std::endl;
+
+
+    // supprimer avec un itérateur
+    v2.erase(it1);
+
+    std::cout << "Suppression : V2: [";
+    for (auto it = v2.begin(); it != v2.end(); ++it) {
+        std::cout << *it << " ";
+    }
+
+    std::cout << "]" << std::endl;
+
+    // Rechercher une valeur
+    auto it_find = std::find(v2.begin(), v2.end(), 99);
+    if (it_find == v2.end()) {
+        // nothing found
+        std::cout << "Unable to find value in vector" << std::endl;
+    } else {
+        std::cout << "Value found: " << *it_find << std::endl;
+    }
+
     // Effacer tous les éléments du vecteur
     v2.clear();
     std::cout << "Après clear(), taille v2: " << v2.size() << std::endl;
+
 }
 
 // Fonction pour std::map
@@ -408,6 +447,8 @@ void sort_deque_custom() {
     for (const auto& e : d) std::cout << e << " ";
     std::cout << std::endl;
 }
+
+
 
 int main() {
 
