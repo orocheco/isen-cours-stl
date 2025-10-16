@@ -1,8 +1,10 @@
+#include <algorithm>
 #include <array>
 #include <deque>
 #include <iostream>
 #include <list>
 #include <map>
+#include <set>
 #include <vector>
 
 
@@ -448,10 +450,49 @@ void sort_deque_custom() {
     std::cout << std::endl;
 }
 
+void tuto_set() {
+    std::set<int> s { 5, 3, 9, 1, 4, 5, 5, 5, 5};
+
+    std::cout << "Set: ";
+    // devrait afficher 1 3 4 5 9
+    for (const auto& e : s) {
+        std::cout << e << " ";
+    }
+    std::cout << std::endl;
+
+    // insérer un élément (retourne un itérateur)
+    int val {5};
+    std::pair<std::set<int>::iterator, bool> ret = s.insert(val);
+    std::cout << "Résultat insertion: " << std::to_string(val) << ": (doit afficher 0 car " << std::to_string(val) << " est déjà inséré) " << ret.second << std::endl;
+
+    val = 15;
+    // utilité d'utiliser auto dans ce cas là
+    auto ret2 = s.insert(val);
+    std::cout << "Résultat insertion: " << std::to_string(val) << ": (doit afficher 1 car " << std::to_string(val) << " n'est pas présent) " << ret2.second << std::endl;
+
+    // supprimer un élément
+    s.erase(5);
+
+    std::cout << "Set: ";
+    // devrait afficher 1 3 4 5 9
+    for (const auto& e : s) {
+        std::cout << e << " ";
+    }
+    std::cout << std::endl;
+
+
+    // Ne fonctionne pas : le set est toujours trié à l'insertion
+// std::sort(s.begin(), s.end(), std::greater<int>());
+
+
+    std::cout << std::endl;
+}
+
 
 
 int main() {
 
+    tuto_set();
     tuto_vector();
     tuto_map();
     tuto_list();
